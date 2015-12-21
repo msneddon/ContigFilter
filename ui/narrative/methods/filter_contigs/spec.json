@@ -9,7 +9,7 @@
 	"categories": ["active"],
 	"widgets": {
 		"input": null,
-		"output": null
+		"output": "kbaseReportView"
 	},
 	"parameters": [ 
 		{
@@ -57,20 +57,20 @@
 			],
 			"output_mapping": [
 				{
-					"service_method_output_path": [0],
-					"target_property": "contig_filter_result"
+					"service_method_output_path": [0,"report_name"],
+					"target_property": "report_name"
 				},
 				{
-					"input_parameter": "contigset_id",
-					"target_property": "input_contigset_id"
-				},
-				{
-					"input_parameter": "min_length",
-					"target_property": "input_min_length"
+					"service_method_output_path": [0,"report_ref"],
+					"target_property": "report_ref"
 				},
 				{
 					"narrative_system_variable": "workspace",
-					"target_property": "workspaceName"
+					"target_property": "workspace_name"
+				},
+				{
+					"constant_value": "5",
+					"target_property": "report_window_line_height"
 				}
 			]
 		}

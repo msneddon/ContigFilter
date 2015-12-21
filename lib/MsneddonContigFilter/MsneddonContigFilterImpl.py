@@ -1,4 +1,5 @@
 #BEGIN_HEADER
+import uuid
 from biokbase.workspace.client import Workspace as workspaceService
 #END_HEADER
 
@@ -44,10 +45,12 @@ This sample module contains one small method - count_contigs.
         token = ctx['token']
         ws = workspaceService(self.workspaceURL, token=token)
         contigSet = ws.get_objects([{'ref': workspace_name+'/'+contigset_id}])[0]['data']
-        provenance = None
+        # load the method provenance from the context object
+        provenance = [{}]
         if 'provenance' in ctx:
             provenance = ctx['provenance']
-            # add additional info to provenance here if needed
+        # add additional info to provenance here, in this case the input data object reference
+        provenance[0]['input_ws_objects']=[workspace_name+'/'+contigset_id]
 
         print('Got ContigSet data.')
 
@@ -80,16 +83,62 @@ This sample module contains one small method - count_contigs.
                             ]
                         })
         info = obj_info_list[0]
+        # Object Info Contents
+        # absolute ref = info[6] + '/' + info[0] + '/' + info[4]
+        # 0 - obj_id objid
+        # 1 - obj_name name
+        # 2 - type_string type
+        # 3 - timestamp save_date
+        # 4 - int version
+        # 5 - username saved_by
+        # 6 - ws_id wsid
+        # 7 - ws_name workspace
+        # 8 - string chsum
+        # 9 - int size 
+        # 10 - usermeta meta
 
-        print('saved:'+str(info))
+        print('saved ContigSet: '+str(info))
+
+        # Create a report
+        report = 'New ContigSet saved to: '+str(info[7]) + '/'+str(info[1])+'/'+str(info[4])+'\n'
+        report += 'Number of initial contigs:      '+ str(n_total)
+        report += 'Number of contigs removed:      '+ str(n_total - n_remaining)
+        report += 'Number of contigs in final set: '+ str(n_remaining)
+
+        reportObj = {
+            'objects_created':[{
+                    'ref':str(info[6]) + '/'+str(info[0])+'/'+str(info[4]), 
+                    'description':'Filtered Contigs'
+                }],
+            'text_message':report
+        }
+
+        # generate a unique name for the Method report
+        reportName = 'filter_contigs_report_'+str(hex(uuid.getnode()))
+        report_info = ws.save_objects({
+                'id':info[6],
+                'objects':[
+                    {
+                        'type':'KBaseReport.Report',
+                        'data':reportObj,
+                        'name':reportName,
+                        'meta':{},
+                        'hidden':1, # important!  make sure the report is hidden
+                        'provenance':provenance
+                    }
+                ]
+            })[0]
+
+        print('saved Report: '+str(report_info))
 
         returnVal = {
-                'new_contigset_ref': str(info[6]) + '/'+str(info[0])+'/'+str(info[4]),
-                'n_initial_contigs':n_total,
-                'n_contigs_removed':n_total-n_remaining,
-                'n_contigs_remaining':n_remaining
-            }
-
+            'report_name': reportName,
+            'report_ref': str(report_info[6]) + '/' + str(report_info[0]) + '/' + str(report_info[4]),
+            'new_contigset_ref': str(info[6]) + '/'+str(info[0])+'/'+str(info[4]),
+            'n_initial_contigs':n_total,
+            'n_contigs_removed':n_total-n_remaining,
+            'n_contigs_remaining':n_remaining
+        }
 
         print('returning:'+str(returnVal))
 

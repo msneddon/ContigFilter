@@ -23,6 +23,8 @@ module MsneddonContigFilter {
 
 
 	typedef structure {
+		string report_name;
+		string report_ref;
 		string new_contigset_ref;
 		int n_initial_contigs;
 		int n_contigs_removed;

@@ -130,6 +130,8 @@ FilterContigsParams is a reference to a hash where the following keys are define
 workspace_name is a string
 contigset_id is a string
 FilterContigsResults is a reference to a hash where the following keys are defined:
+	report_name has a value which is a string
+	report_ref has a value which is a string
 	new_contigset_ref has a value which is a string
 	n_initial_contigs has a value which is an int
 	n_contigs_removed has a value which is an int
@@ -150,6 +152,8 @@ FilterContigsParams is a reference to a hash where the following keys are define
 workspace_name is a string
 contigset_id is a string
 FilterContigsResults is a reference to a hash where the following keys are defined:
+	report_name has a value which is a string
+	report_ref has a value which is a string
 	new_contigset_ref has a value which is a string
 	n_initial_contigs has a value which is an int
 	n_contigs_removed has a value which is an int
@@ -379,6 +383,8 @@ min_length has a value which is an int
 
 <pre>
 a reference to a hash where the following keys are defined:
+report_name has a value which is a string
+report_ref has a value which is a string
 new_contigset_ref has a value which is a string
 n_initial_contigs has a value which is an int
 n_contigs_removed has a value which is an int
@@ -391,6 +397,8 @@ n_contigs_remaining has a value which is an int
 =begin text
 
 a reference to a hash where the following keys are defined:
+report_name has a value which is a string
+report_ref has a value which is a string
 new_contigset_ref has a value which is a string
 n_initial_contigs has a value which is an int
 n_contigs_removed has a value which is an int

@@ -19,6 +19,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("com.googlecode.jsonschema2pojo")
 @JsonPropertyOrder({
+    "report_name",
+    "report_ref",
     "new_contigset_ref",
     "n_initial_contigs",
     "n_contigs_removed",
@@ -26,6 +28,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 })
 public class FilterContigsResults {
 
+    @JsonProperty("report_name")
+    private String reportName;
+    @JsonProperty("report_ref")
+    private String reportRef;
     @JsonProperty("new_contigset_ref")
     private String newContigsetRef;
     @JsonProperty("n_initial_contigs")
@@ -35,6 +41,36 @@ public class FilterContigsResults {
     @JsonProperty("n_contigs_remaining")
     private Long nContigsRemaining;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    @JsonProperty("report_name")
+    public String getReportName() {
+        return reportName;
+    }
+
+    @JsonProperty("report_name")
+    public void setReportName(String reportName) {
+        this.reportName = reportName;
+    }
+
+    public FilterContigsResults withReportName(String reportName) {
+        this.reportName = reportName;
+        return this;
+    }
+
+    @JsonProperty("report_ref")
+    public String getReportRef() {
+        return reportRef;
+    }
+
+    @JsonProperty("report_ref")
+    public void setReportRef(String reportRef) {
+        this.reportRef = reportRef;
+    }
+
+    public FilterContigsResults withReportRef(String reportRef) {
+        this.reportRef = reportRef;
+        return this;
+    }
 
     @JsonProperty("new_contigset_ref")
     public String getNewContigsetRef() {
@@ -108,7 +144,7 @@ public class FilterContigsResults {
 
     @Override
     public String toString() {
-        return ((((((((((("FilterContigsResults"+" [newContigsetRef=")+ newContigsetRef)+", nInitialContigs=")+ nInitialContigs)+", nContigsRemoved=")+ nContigsRemoved)+", nContigsRemaining=")+ nContigsRemaining)+", additionalProperties=")+ additionalProperties)+"]");
+        return ((((((((((((((("FilterContigsResults"+" [reportName=")+ reportName)+", reportRef=")+ reportRef)+", newContigsetRef=")+ newContigsetRef)+", nInitialContigs=")+ nInitialContigs)+", nContigsRemoved=")+ nContigsRemoved)+", nContigsRemaining=")+ nContigsRemaining)+", additionalProperties=")+ additionalProperties)+"]");
     }
 
 }
