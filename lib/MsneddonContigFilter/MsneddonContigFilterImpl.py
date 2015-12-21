@@ -1,5 +1,6 @@
 #BEGIN_HEADER
 import uuid
+from pprint import pprint, pformat
 from biokbase.workspace.client import Workspace as workspaceService
 #END_HEADER
 
@@ -97,13 +98,13 @@ This sample module contains one small method - count_contigs.
         # 9 - int size 
         # 10 - usermeta meta
 
-        print('saved ContigSet: '+str(info))
+        print('saved ContigSet: '+pformat(info))
 
         # Create a report
         report = 'New ContigSet saved to: '+str(info[7]) + '/'+str(info[1])+'/'+str(info[4])+'\n'
-        report += 'Number of initial contigs:      '+ str(n_total)
-        report += 'Number of contigs removed:      '+ str(n_total - n_remaining)
-        report += 'Number of contigs in final set: '+ str(n_remaining)
+        report += 'Number of initial contigs:      '+ str(n_total) + '\n'
+        report += 'Number of contigs removed:      '+ str(n_total - n_remaining) + '\n'
+        report += 'Number of contigs in final set: '+ str(n_remaining) + '\n'
 
         reportObj = {
             'objects_created':[{
@@ -129,7 +130,7 @@ This sample module contains one small method - count_contigs.
                 ]
             })[0]
 
-        print('saved Report: '+str(report_info))
+        print('saved Report: '+pformat(report_info))
 
         returnVal = {
             'report_name': reportName,
@@ -140,7 +141,7 @@ This sample module contains one small method - count_contigs.
             'n_contigs_remaining':n_remaining
         }
 
-        print('returning:'+str(returnVal))
+        print('returning:'+pformat(returnVal))
 
         #END filter_contigs
 
