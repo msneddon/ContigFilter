@@ -9,10 +9,7 @@ MAINTAINER KBase Developer
 
 # -----------------------------------------
 
-RUN num1=1 ; while [[ $$num1 -le 40000 ]] ; do \
-		echo $$num1 This is a log line to test the registration log widget ; \
-		((num1 = num1 + 1)) ; \
-	done
+RUN python -c 'for k in range(1,40000): print(str(k)+" this is a log message test this is a log message test")' 
 
 
 COPY ./ /kb/module
