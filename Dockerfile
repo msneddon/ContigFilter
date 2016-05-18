@@ -9,6 +9,12 @@ MAINTAINER KBase Developer
 
 # -----------------------------------------
 
+RUN num1=1 ; while [[ $$num1 -le 40000 ]] ; do \
+		echo $$num1 This is a log line to test the registration log widget ; \
+		((num1 = num1 + 1)) ; \
+	done
+
+
 COPY ./ /kb/module
 RUN mkdir -p /kb/module/work
 
