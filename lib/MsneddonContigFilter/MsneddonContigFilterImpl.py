@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #BEGIN_HEADER
 import uuid
 from pprint import pprint, pformat
@@ -15,12 +16,16 @@ class MsneddonContigFilter:
 This sample module contains one small method - count_contigs.
     '''
 
-    ######## WARNING FOR GEVENT USERS #######
+    ######## WARNING FOR GEVENT USERS ####### noqa
     # Since asynchronous IO can lead to methods - even the same method -
     # interrupting each other, you must be *very* careful when using global
     # state. A method could easily clobber the state set by another while
     # the latter method is running.
-    #########################################
+    ######################################### noqa
+    VERSION = "0.0.1"
+    GIT_URL = "git@github.com:msneddon/ContigFilter"
+    GIT_COMMIT_HASH = "482a30c5be6cc24f0a98c5f6b25db288851403c5"
+
     #BEGIN_CLASS_HEADER
     workspaceURL = None
     #END_CLASS_HEADER
@@ -33,7 +38,22 @@ This sample module contains one small method - count_contigs.
         #END_CONSTRUCTOR
         pass
 
+
     def filter_contigs(self, ctx, params):
+        """
+        Count contigs in a ContigSet
+        contigset_id - the ContigSet to count.
+        :param params: instance of type "FilterContigsParams" -> structure:
+           parameter "workspace" of type "workspace_name" (A string
+           representing a workspace name.), parameter "contigset_id" of type
+           "contigset_id" (A string representing a ContigSet id.), parameter
+           "min_length" of Long
+        :returns: instance of type "FilterContigsResults" -> structure:
+           parameter "report_name" of String, parameter "report_ref" of
+           String, parameter "new_contigset_ref" of String, parameter
+           "n_initial_contigs" of Long, parameter "n_contigs_removed" of
+           Long, parameter "n_contigs_remaining" of Long
+        """
         # ctx is the context object
         # return variables are: returnVal
         #BEGIN filter_contigs
@@ -150,4 +170,13 @@ This sample module contains one small method - count_contigs.
             raise ValueError('Method filter_contigs return value ' +
                              'returnVal is not type dict as required.')
         # return the results
+        return [returnVal]
+    def status(self, ctx):
+        #BEGIN_STATUS
+        returnVal = {'state': "OK",
+                     'message': "",
+                     'version': self.VERSION,
+                     'git_url': self.GIT_URL,
+                     'git_commit_hash': self.GIT_COMMIT_HASH}
+        #END_STATUS
         return [returnVal]

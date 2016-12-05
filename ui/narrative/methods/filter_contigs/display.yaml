@@ -32,6 +32,13 @@ parameters :
             Contig Set Name
         short-hint : |
             The contig set to filter (will be overwritten)
+
+    test_param_ref :
+        ui-name : |
+            Test Param
+        short-hint : |
+            something
+            
     min_length :
         ui-name : |
             Min Length Threshold
