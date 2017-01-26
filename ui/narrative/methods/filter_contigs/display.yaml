@@ -3,47 +3,39 @@
 #
 name: Filter Contigs
 tooltip: |
-	Filters the contigs by removing contigs below a length threshold
+    Filters the contigs by removing contigs below a length threshold
 screenshots: []
 
-icon: icon.png
+icon: null
 
 #
 # define a set of similar methods that might be useful to the user
 #
 suggestions:
-	apps:
-		related:
-			[]
-		next:
-			[]
-	methods:
-		related:
-			[]
-		next:
-			[annotate_contigset]
+    apps:
+        related:
+            []
+        next:
+            []
+    methods:
+        related:
+            []
+        next:
+            [annotate_contigset]
 
 #
 # Configure the display and description of parameters
 #
 parameters :
-    contigset_id :
+    assembly_input_ref :
         ui-name : |
-            Contig Set Name
+            Assembly
         short-hint : |
-            The contig set to filter (will be overwritten)
-
-    test_param_ref :
-        ui-name : |
-            Test Param
-        short-hint : |
-            something
-            
+            The assembly to filter (will be overwritten)
     min_length :
         ui-name : |
             Min Length Threshold
         short-hint : |
             All contigs below this length will be removed
-
 description : |
-	<p>This is a simple method designed to illustrate the KBase SDK.</p>
+    <p>This is a simple method designed to illustrate the KBase SDK.</p>
