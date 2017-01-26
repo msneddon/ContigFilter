@@ -2,13 +2,13 @@ module-name:
     ContigFilter
 
 module-description:
-    A KBase module
+    An example KBase module for filtering Contigs
 
 service-language:
     python
 
 module-version:
-    0.0.1
+    0.0.2
 
 owners:
     [msneddon]
